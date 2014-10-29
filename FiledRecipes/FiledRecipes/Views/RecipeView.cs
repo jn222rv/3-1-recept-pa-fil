@@ -51,7 +51,7 @@ namespace FiledRecipes.Views
 
                 Show(recipes.ElementAt(index));
                 
-                ShowPanel("Använd piltangenterna + Backspace", App.Controls.MessagePanelOptions.Info);
+                ShowPanel("Använd piltangenterna & Backspace", App.Controls.MessagePanelOptions.Info);
 
                 cki = Console.ReadKey(true);
 
