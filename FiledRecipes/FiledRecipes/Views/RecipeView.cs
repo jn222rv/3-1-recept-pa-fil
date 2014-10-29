@@ -17,7 +17,7 @@ namespace FiledRecipes.Views
             Console.Clear();
             Header = recipe.Name;
             ShowHeaderPanel();
-
+            
             Console.WriteLine();
             Console.WriteLine("Ingredienser");
             Console.WriteLine("============");
@@ -31,7 +31,7 @@ namespace FiledRecipes.Views
             Console.WriteLine("==========");
             for (int i = 0; i < recipe.Instructions.Count(); i++)
             {
-                Console.WriteLine("({0})", i + 1);
+                Console.Write("({0}) ", i + 1);
                 Console.WriteLine(recipe.Instructions.ElementAt(i));
             }
         }
@@ -49,29 +49,13 @@ namespace FiledRecipes.Views
                 Header = recipes.ElementAt(index).Name;
                 ShowHeaderPanel();
 
-                Console.WriteLine();
-                Console.WriteLine("Ingredienser");
-                Console.WriteLine("============");
-                for (int i = 0; i < recipes.ElementAt(index).Ingredients.Count(); i++)
-                {
-                    Console.WriteLine(recipes.ElementAt(index).Ingredients.ElementAt(i));
-                }
-
-                Console.WriteLine();
-                Console.WriteLine("Gör så här");
-                Console.WriteLine("==========");
-                for (int i = 0; i < recipes.ElementAt(index).Instructions.Count(); i++)
-                {
-                    Console.WriteLine("({0})", i + 1);
-                    Console.WriteLine(recipes.ElementAt(index).Instructions.ElementAt(i));
-                }
-
-
+                Show(recipes.ElementAt(index));
+                
                 ShowPanel("Använd piltangenterna + Backspace", App.Controls.MessagePanelOptions.Info);
 
                 cki = Console.ReadKey(true);
 
-                if (cki.Key == ConsoleKey.RightArrow)
+                if (cki.Key == ConsoleKey.LeftArrow)
                 {
                     if (index == 0)
                     {
@@ -82,7 +66,7 @@ namespace FiledRecipes.Views
                         index--;
                     }
                 }
-                else if (cki.Key == ConsoleKey.LeftArrow)
+                else if (cki.Key == ConsoleKey.RightArrow)
                 {
                     if (index == recipes.Count() - 1)
                     {

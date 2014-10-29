@@ -136,13 +136,13 @@ namespace FiledRecipes.Domain
                     writer.WriteLine("[Recept]");
                     writer.WriteLine(_recipes.ElementAt(i).Name);
                     writer.WriteLine("[Ingredienser]");
-                    for (int j = 0; j < _recipes.ElementAt(i).Ingredients.Count() - 1; j++)
+                    for (int j = 0; j < _recipes.ElementAt(i).Ingredients.Count(); j++)
                     {
                         IIngredient ing = _recipes.ElementAt(i).Ingredients.ElementAt(j);
                         writer.WriteLine(String.Format("{0};{1};{2}", ing.Amount, ing.Measure, ing.Name));
                     }
                     writer.WriteLine("[Instruktioner]");
-                    for (int j = 0; j < _recipes.ElementAt(i).Instructions.Count() - 1; j++)
+                    for (int j = 0; j < _recipes.ElementAt(i).Instructions.Count(); j++)
                     {
                         writer.WriteLine(_recipes.ElementAt(i).Instructions.ElementAt(j));
                     }
@@ -151,10 +151,11 @@ namespace FiledRecipes.Domain
         }
         public void Load()
         {
-            _recipes = new List<IRecipe>(100);
 
             using (StreamReader reader = new StreamReader(@"App_Data/Recipes.txt"))
             {
+                _recipes = new List<IRecipe>(100);
+                
                 string line;
                 RecipeReadStatus status = RecipeReadStatus.Indefinite;
 
